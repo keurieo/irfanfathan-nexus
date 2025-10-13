@@ -12,7 +12,7 @@ const About = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 glow-text">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 text-primary">
             About Me
           </h2>
         </motion.div>
@@ -27,7 +27,7 @@ const About = () => {
             className="flex justify-center"
           >
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-full opacity-30 blur-2xl animate-glow-pulse" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-full opacity-20 blur-2xl" />
               <img
                 src={profileImg}
                 alt="Irfan Fathan M"

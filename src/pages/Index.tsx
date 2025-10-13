@@ -6,10 +6,13 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Achievements from "@/components/Achievements";
 import Contact from "@/components/Contact";
+import Cursor3D from "@/components/Cursor3D";
 
 const Index = () => {
   return (
-    <main className="min-h-screen">
+    <>
+      <Cursor3D />
+      <main className="min-h-screen cursor-none">
       <Hero />
       <About />
       <Skills />
@@ -25,7 +28,8 @@ const Index = () => {
           © {new Date().getFullYear()} Irfan Fathan M. Built with passion for innovation.
         </p>
       </footer>
-    </main>
+      </main>
+    </>
   );
 };
 

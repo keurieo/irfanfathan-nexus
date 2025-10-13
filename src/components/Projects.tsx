@@ -25,7 +25,7 @@ const Projects = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4 glow-text">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4 text-primary">
             Featured Projects
           </h2>
           <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">

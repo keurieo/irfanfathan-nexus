@@ -29,7 +29,7 @@ const Achievements = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 glow-text">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 text-primary">
             Achievements
           </h2>
         </motion.div>
@@ -46,7 +46,7 @@ const Achievements = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="glass-card p-6 text-center hover:scale-105 transition-transform duration-300 group"
               >
-                <div className="inline-flex p-4 bg-primary/10 rounded-full border border-primary/20 mb-4 group-hover:animate-glow-pulse">
+                <div className="inline-flex p-4 bg-primary/10 rounded-full border border-primary/20 mb-4">
                   <Icon className="h-8 w-8 text-primary" />
                 </div>
                 

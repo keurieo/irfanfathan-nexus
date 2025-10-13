@@ -36,7 +36,7 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4 glow-text">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4 text-primary">
             Get In Touch
           </h2>
           <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
@@ -128,7 +128,7 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-4 p-3 bg-secondary/30 rounded-lg border border-border/50 hover:bg-secondary/50 hover:border-primary/30 transition-all group"
                     >
-                      <div className="p-2 bg-primary/10 rounded-lg border border-primary/20 group-hover:animate-glow-pulse">
+                      <div className="p-2 bg-primary/10 rounded-lg border border-primary/20">
                         <Icon className="h-5 w-5 text-primary" />
                       </div>
                       <span className="font-medium text-foreground">{link.label}</span>

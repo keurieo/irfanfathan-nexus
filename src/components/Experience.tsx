@@ -38,7 +38,7 @@ const Experience = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 glow-text">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 text-primary">
             Experience
           </h2>
         </motion.div>
