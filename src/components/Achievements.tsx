@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Award, Trophy, Medal } from "lucide-react";
 
 const achievements = [
@@ -20,16 +21,25 @@ const achievements = [
 ];
 
 const Achievements = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
+
   return (
-    <section id="achievements" className="section-padding bg-secondary/20">
-      <div className="max-w-6xl mx-auto">
+    <section id="achievements" className="section-padding bg-secondary/20 relative overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 bg-mesh opacity-35" />
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, type: "spring" }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 text-primary">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
             Achievements
           </h2>
         </motion.div>
@@ -40,11 +50,13 @@ const Achievements = () => {
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                style={{ y }}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="glass-card p-6 text-center hover:scale-105 transition-transform duration-300 group"
+                transition={{ duration: 0.8, delay: index * 0.15, type: "spring", bounce: 0.5 }}
+                whileHover={{ y: -12, scale: 1.05 }}
+                className="glass-card p-6 text-center group card-3d"
               >
                 <div className="inline-flex p-4 bg-primary/10 rounded-full border border-primary/20 mb-4">
                   <Icon className="h-8 w-8 text-primary" />

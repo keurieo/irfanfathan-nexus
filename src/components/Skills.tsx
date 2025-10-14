@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useRef } from "react";
 import { Code, Cpu, Wrench, MonitorSmartphone } from "lucide-react";
 
 const skillsData = {
@@ -39,17 +39,27 @@ const categories = [
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("Programming");
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.85, 1]);
+  const rotate = useTransform(scrollYProgress, [0, 0.5], [5, 0]);
 
   return (
-    <section id="skills" className="section-padding bg-secondary/20">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="section-padding bg-secondary/20 relative overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 bg-mesh opacity-40" />
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
+          style={{ scale }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, type: "spring" }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 text-primary">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
             Technical Skills
           </h2>
         </motion.div>
@@ -60,23 +70,29 @@ const Skills = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {categories.map((category) => {
+          {categories.map((category, index) => {
             const Icon = category.icon;
             return (
-              <button
+              <motion.button
                 key={category.name}
                 onClick={() => setActiveCategory(category.name)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1, type: "spring" }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all card-3d ${
                   activeCategory === category.name
-                    ? "glass-button text-primary"
-                    : "bg-card/30 border border-border/50 text-muted-foreground hover:bg-card/50"
+                    ? "bg-gradient-to-r from-primary to-accent text-white"
+                    : "glass-card text-muted-foreground hover:text-foreground"
                 }`}
               >
                 <Icon className="h-5 w-5" />
                 {category.name}
-              </button>
+              </motion.button>
             );
           })}
         </motion.div>
@@ -84,10 +100,12 @@ const Skills = () => {
         {/* Skills Display */}
         <motion.div
           key={activeCategory}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className="glass-card p-8 max-w-3xl mx-auto"
+          style={{ rotate }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
+          whileHover={{ y: -8 }}
+          className="glass-card p-8 max-w-3xl mx-auto card-3d"
         >
           <div className="space-y-6">
             {skillsData[activeCategory as keyof typeof skillsData].map((skill, index) => (

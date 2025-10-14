@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useState, useRef } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -7,6 +7,14 @@ import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import { toast } from "sonner";
 
 const Contact = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.9, 1]);
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,15 +36,17 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-background to-secondary/20">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="section-padding bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 bg-mesh opacity-30" />
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
+          style={{ scale }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, type: "spring" }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4 text-primary">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
             Get In Touch
           </h2>
           <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
@@ -50,8 +60,9 @@ const Contact = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="glass-card p-8"
+            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+            whileHover={{ y: -4 }}
+            className="glass-card p-8 card-3d"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -110,7 +121,7 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }}
             className="space-y-8"
           >
             <div className="glass-card p-6">

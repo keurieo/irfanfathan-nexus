@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "./ui/button";
 import aquaIntelImg from "@/assets/aqua-intel.jpg";
@@ -16,16 +17,25 @@ const projects = [
 ];
 
 const Projects = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
+
   return (
-    <section id="projects" className="section-padding bg-gradient-to-b from-background to-secondary/20">
-      <div className="max-w-6xl mx-auto">
+    <section id="projects" className="section-padding bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 bg-mesh opacity-35" />
+      <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, type: "spring" }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4 text-primary">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4 bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
             Featured Projects
           </h2>
           <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
@@ -37,11 +47,13 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              style={{ y }}
+              initial={{ opacity: 0, y: 50, rotateX: 10 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="glass-card overflow-hidden group hover:scale-105 transition-transform duration-300"
+              transition={{ duration: 0.8, delay: index * 0.15, type: "spring", bounce: 0.4 }}
+              whileHover={{ y: -12, scale: 1.02 }}
+              className="glass-card overflow-hidden group card-3d"
             >
               {/* Project Image */}
               <div className="relative h-48 overflow-hidden">
