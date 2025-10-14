@@ -37,32 +37,32 @@ const Cursor3D = () => {
     <>
       {/* Main 3D cursor */}
       <motion.div
-        className="fixed pointer-events-none z-50 mix-blend-difference"
+        className="fixed pointer-events-none z-50"
         animate={{
           x: mousePosition.x - 20,
           y: mousePosition.y - 20,
-          scale: isHovering ? 1.5 : 1,
+          scale: isHovering ? 1.8 : 1,
         }}
         transition={{
           type: "spring",
-          stiffness: 500,
-          damping: 28,
-          mass: 0.5,
+          stiffness: 600,
+          damping: 30,
+          mass: 0.4,
         }}
       >
         <div
           className="w-10 h-10 relative"
           style={{
-            transform: "rotateX(60deg) rotateZ(45deg)",
+            transform: "rotateX(55deg) rotateZ(45deg)",
             transformStyle: "preserve-3d",
           }}
         >
           {/* Cube faces */}
-          <div className="absolute inset-0 bg-primary/30 border border-primary backdrop-blur-sm" 
+          <div className="absolute inset-0 bg-primary/40 border-2 border-primary backdrop-blur-sm rounded-sm" 
                style={{ transform: "translateZ(5px)" }} />
-          <div className="absolute inset-0 bg-primary/20 border border-primary backdrop-blur-sm" 
+          <div className="absolute inset-0 bg-primary/30 border-2 border-primary backdrop-blur-sm rounded-sm" 
                style={{ transform: "rotateY(90deg) translateZ(5px)" }} />
-          <div className="absolute inset-0 bg-primary/10 border border-primary backdrop-blur-sm" 
+          <div className="absolute inset-0 bg-primary/20 border-2 border-primary backdrop-blur-sm rounded-sm" 
                style={{ transform: "rotateX(90deg) translateZ(5px)" }} />
         </div>
       </motion.div>
@@ -71,17 +71,17 @@ const Cursor3D = () => {
       <motion.div
         className="fixed pointer-events-none z-40"
         animate={{
-          x: mousePosition.x - 2,
-          y: mousePosition.y - 2,
+          x: mousePosition.x - 3,
+          y: mousePosition.y - 3,
         }}
         transition={{
           type: "spring",
-          stiffness: 150,
-          damping: 15,
-          mass: 0.1,
+          stiffness: 200,
+          damping: 18,
+          mass: 0.15,
         }}
       >
-        <div className="w-1 h-1 bg-accent rounded-full opacity-60" />
+        <div className="w-2 h-2 bg-accent rounded-full opacity-50 shadow-lg" />
       </motion.div>
 
       <motion.div
@@ -92,12 +92,12 @@ const Cursor3D = () => {
         }}
         transition={{
           type: "spring",
-          stiffness: 100,
-          damping: 20,
-          mass: 0.2,
+          stiffness: 120,
+          damping: 22,
+          mass: 0.25,
         }}
       >
-        <div className="w-1.5 h-1.5 bg-primary rounded-full opacity-40" />
+        <div className="w-1.5 h-1.5 bg-primary rounded-full opacity-30 shadow-md" />
       </motion.div>
     </>
   );
