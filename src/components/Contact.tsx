@@ -29,16 +29,16 @@ const Contact = () => {
   };
 
   const socialLinks = [
-    { icon: Github, url: "https://github.com/IrfanFathan", label: "GitHub" },
-    { icon: Linkedin, url: "https://linkedin.com/in/irfanfathan", label: "LinkedIn" },
-    { icon: Mail, url: "mailto:irfanfathan69@gmail.com", label: "Email" },
-    { icon: Phone, url: "tel:+919526635605", label: "Phone" },
+    { icon: Mail, url: "mailto:muhammadirfanvnb@gmail.com", label: "muhammadirfanvnb@gmail.com" },
+    { icon: Linkedin, url: "https://www.linkedin.com/in/irfan-fathan", label: "LinkedIn Profile" },
+    { icon: Github, url: "https://github.com/irfanfathan", label: "GitHub Profile" },
+    { icon: Linkedin, url: "https://www.linkedin.com/company/motridox-robotics", label: "Motridox Robotics" },
   ];
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-background to-secondary/20 relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 bg-mesh opacity-30" />
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="contact" className="section-padding bg-mesh relative overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-40" />
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           style={{ scale }}
           initial={{ opacity: 0, y: 20 }}
@@ -46,11 +46,11 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, type: "spring" }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-            Get In Touch
+          <h2 className="text-5xl md:text-7xl font-heading font-bold text-center mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Contact Me
           </h2>
-          <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out!
+          <p className="text-center text-lg md:text-xl text-muted-foreground mb-16 max-w-2xl mx-auto">
+            Let's connect and collaborate on innovative tech solutions!
           </p>
         </motion.div>
 
@@ -110,7 +110,7 @@ const Contact = () => {
                 />
               </div>
 
-              <Button type="submit" className="w-full glass-button text-primary font-semibold">
+              <Button type="submit" className="w-full glass-button font-semibold">
                 Send Message
               </Button>
             </form>

@@ -1,44 +1,55 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Code, Cpu, Wrench, Monitor, Cog, Users } from "lucide-react";
 import { useState, useRef } from "react";
-import { Code, Cpu, Wrench, MonitorSmartphone } from "lucide-react";
 
 const skillsData = {
-  Programming: [
+  programming: [
+    { name: "Python", level: 90 },
     { name: "C", level: 85 },
-    { name: "C++", level: 80 },
-    { name: "Python", level: 75 },
-    { name: "Dart", level: 70 },
+    { name: "C++", level: 85 },
+    { name: "Django", level: 80 },
+    { name: "Flutter", level: 75 },
+    { name: "React", level: 65 },
   ],
-  "Embedded Tools": [
-    { name: "ESP-IDF", level: 85 },
-    { name: "STM32CubeIDE", level: 75 },
-    { name: "Arduino IDE", level: 90 },
-    { name: "Keil", level: 70 },
-    { name: "Proteus", level: 80 },
+  embedded: [
+    { name: "ESP32", level: 95 },
+    { name: "Arduino", level: 95 },
+    { name: "Raspberry Pi", level: 85 },
+    { name: "Sensors & Actuators", level: 90 },
+    { name: "Circuit Design", level: 80 },
   ],
-  Hardware: [
-    { name: "ESP32", level: 90 },
-    { name: "Arduino UNO", level: 95 },
-    { name: "STM32", level: 75 },
-    { name: "8051", level: 70 },
+  robotics: [
+    { name: "Robot Systems Integration", level: 90 },
+    { name: "ROS (learning)", level: 60 },
+    { name: "Machine Learning basics", level: 70 },
+    { name: "Computer Vision", level: 65 },
   ],
-  Software: [
+  tools: [
     { name: "MATLAB", level: 75 },
-    { name: "Proteus", level: 80 },
-    { name: "Altium 365", level: 70 },
-    { name: "KiCad", level: 75 },
+    { name: "Proteus", level: 85 },
+    { name: "KiCad", level: 70 },
+    { name: "Fusion 360", level: 65 },
+    { name: "Blynk", level: 80 },
+    { name: "GitHub", level: 85 },
+  ],
+  soft: [
+    { name: "Leadership", level: 90 },
+    { name: "Team Collaboration", level: 95 },
+    { name: "Problem Solving", level: 90 },
+    { name: "Communication", level: 85 },
   ],
 };
 
 const categories = [
-  { name: "Programming", icon: Code },
-  { name: "Embedded Tools", icon: Cpu },
-  { name: "Hardware", icon: Wrench },
-  { name: "Software", icon: MonitorSmartphone },
+  { name: "Programming & Frameworks", icon: Code, key: "programming" },
+  { name: "Hardware & Embedded", icon: Cpu, key: "embedded" },
+  { name: "Robotics & AI", icon: Wrench, key: "robotics" },
+  { name: "Tools", icon: Monitor, key: "tools" },
+  { name: "Soft Skills", icon: Users, key: "soft" },
 ];
 
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState("Programming");
+  const [activeCategory, setActiveCategory] = useState("programming");
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -49,9 +60,9 @@ const Skills = () => {
   const rotate = useTransform(scrollYProgress, [0, 0.5], [5, 0]);
 
   return (
-    <section id="skills" className="section-padding bg-secondary/20 relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 bg-mesh opacity-40" />
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="skills" className="section-padding bg-background relative overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 bg-mesh opacity-30" />
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           style={{ scale }}
           initial={{ opacity: 0, y: 20 }}
@@ -59,9 +70,12 @@ const Skills = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, type: "spring" }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-7xl font-heading font-bold text-center mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Technical Skills
           </h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-center mb-16">
+            A comprehensive toolkit spanning hardware, software, and interpersonal expertise
+          </p>
         </motion.div>
 
         {/* Category Tabs */}
@@ -76,8 +90,8 @@ const Skills = () => {
             const Icon = category.icon;
             return (
               <motion.button
-                key={category.name}
-                onClick={() => setActiveCategory(category.name)}
+                key={category.key}
+                onClick={() => setActiveCategory(category.key)}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -85,8 +99,8 @@ const Skills = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all card-3d ${
-                  activeCategory === category.name
-                    ? "bg-gradient-to-r from-primary to-accent text-white"
+                  activeCategory === category.key
+                    ? "bg-gradient-to-r from-primary to-accent text-primary-foreground"
                     : "glass-card text-muted-foreground hover:text-foreground"
                 }`}
               >

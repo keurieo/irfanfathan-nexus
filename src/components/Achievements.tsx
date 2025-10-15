@@ -1,22 +1,27 @@
+import { Trophy, Award, Rocket, GraduationCap } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Award, Trophy, Medal } from "lucide-react";
 
 const achievements = [
   {
     title: "WorldSkills India 2024",
-    description: "State Finalist - Mobile App Development",
+    description: "Mobile App Development – State Level Participant, showcasing expertise in mobile application development",
     icon: Trophy,
   },
   {
-    title: "NASA Space Apps Challenge",
-    description: "Global Participant (2024)",
+    title: "NASA International Space Apps Challenge 2024",
+    description: "Global participant developing innovative solutions using NASA's open data for agricultural applications",
+    icon: Rocket,
+  },
+  {
+    title: "Eight Plane Robotics Workshop",
+    description: "Completed comprehensive robotics workshop, gaining hands-on experience in robot design and programming",
     icon: Award,
   },
   {
-    title: "Robotics Workshop",
-    description: "Certified by Eight Plane (2023)",
-    icon: Medal,
+    title: "B.Tech in Electronics & Communication Engineering",
+    description: "Eranad Knowledge City Technical Campus – Specializing in Robotics, IoT, and Embedded Systems",
+    icon: GraduationCap,
   },
 ];
 
@@ -30,21 +35,24 @@ const Achievements = () => {
   const y = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
   return (
-    <section id="achievements" className="section-padding bg-secondary/20 relative overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 bg-mesh opacity-35" />
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="achievements" className="section-padding bg-background relative overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 bg-mesh opacity-30" />
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, type: "spring" }}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-16 bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-            Achievements
+          <h2 className="text-5xl md:text-7xl font-heading font-bold text-center mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Achievements & Certifications
           </h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-center mb-16">
+            Milestones that showcase my growth and commitment to excellence
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {achievements.map((achievement, index) => {
             const Icon = achievement.icon;
             return (
@@ -55,20 +63,24 @@ const Achievements = () => {
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.15, type: "spring", bounce: 0.5 }}
-                whileHover={{ y: -12, scale: 1.05 }}
-                className="glass-card p-6 text-center group card-3d"
+                whileHover={{ y: -12, scale: 1.02 }}
+                className="glass-card p-8 group card-3d"
               >
-                <div className="inline-flex p-4 bg-primary/10 rounded-full border border-primary/20 mb-4">
-                  <Icon className="h-8 w-8 text-primary" />
+                <div className="flex items-start gap-4">
+                  <div className="p-4 bg-primary/10 rounded-xl border border-primary/20 flex-shrink-0">
+                    <Icon className="h-8 w-8 text-primary" />
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-heading font-bold text-foreground mb-3">
+                      {achievement.title}
+                    </h3>
+                    
+                    <p className="text-muted-foreground leading-relaxed">
+                      {achievement.description}
+                    </p>
+                  </div>
                 </div>
-                
-                <h3 className="text-lg font-heading font-bold text-foreground mb-2">
-                  {achievement.title}
-                </h3>
-                
-                <p className="text-muted-foreground text-sm">
-                  {achievement.description}
-                </p>
               </motion.div>
             );
           })}

@@ -73,32 +73,37 @@ const Hero = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2, type: "spring", bounce: 0.5 }}
-            className="mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-6"
           >
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-heading font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-float">
-              Irfan Fathan M
+            <p className="text-lg md:text-xl text-primary mb-4">👋 Hi, I'm</p>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-float">
+              Irfan Fathan
             </h1>
           </motion.div>
           
-          <motion.p 
-            className="text-xl md:text-3xl font-semibold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+          <motion.div
+            className="flex flex-wrap gap-3 justify-center items-center text-xl md:text-2xl font-semibold mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            Electronics & Communication Engineer
-          </motion.p>
+            <span className="text-foreground">🔌 Electronics & Communication Engineering Student</span>
+            <span className="text-primary">|</span>
+            <span className="text-foreground">🤖 Robotics Innovator</span>
+            <span className="text-primary">|</span>
+            <span className="text-foreground">🧠 Embedded Systems Enthusiast</span>
+          </motion.div>
           
           <motion.p 
-            className="text-lg md:text-xl text-foreground/70 max-w-3xl mx-auto mb-12 leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.7 }}
           >
-            Building the future with Robotics, IoT & Embedded Systems
+            Passionate about building intelligent systems that connect hardware and software to solve real-world challenges.
           </motion.p>
 
           <motion.div 
@@ -113,7 +118,7 @@ const Hero = () => {
                 onClick={() => scrollToSection("projects")}
                 className="glass-button px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl"
               >
-                View Projects
+                View My Work
               </Button>
             </motion.div>
             
@@ -122,7 +127,7 @@ const Hero = () => {
                 size="lg"
                 variant="outline"
                 onClick={() => window.open("/Irfan_Fathan_CV.pdf", "_blank")}
-                className="border-2 border-primary/40 text-foreground hover:bg-primary/5 hover:border-primary px-10 py-7 text-lg font-semibold shadow-md"
+                className="border-2 border-primary hover:bg-primary/10 hover:border-primary px-10 py-7 text-lg font-semibold shadow-md"
               >
                 <Download className="mr-2 h-5 w-5" />
                 Download Resume
